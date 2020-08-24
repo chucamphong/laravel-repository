@@ -1,7 +1,10 @@
 <?php
 
+namespace ChuPhong\Repository\Exceptions;
 
-class RepositoryExpcetion
+use Exception;
+
+class RepositoryExpcetion extends Exception
 {
 
 }

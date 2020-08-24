@@ -3,16 +3,59 @@
 namespace ChuPhong\Repository\Eloquent;
 
 use ChuPhong\Repository\Contracts\RepositoryInterface;
+use ChuPhong\Repository\Exceptions\RepositoryExpcetion;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 
-class Repository implements RepositoryInterface
+abstract class Repository implements RepositoryInterface
 {
-    public static function __callStatic($method, $arguments)
+    protected Application $app;
+
+    /**
+     * @var Model|QueryBuilder|EloquentBuilder|null
+     */
+    private $model;
+
+    public function __construct(Application $app)
     {
-        // TODO: Implement __callStatic() method.
+        $this->app = $app;
     }
 
-    public function __call($method, $arguments)
+    abstract public function model(): string;
+
+    /**
+     * @throws RepositoryExpcetion
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    protected function getModel(): Model
     {
-        // TODO: Implement __call() method.
+        if (is_null($this->model)) {
+            $model = $this->app->make($this->model());
+
+            if ($model instanceof Model) {
+                $this->model = $model;
+            }
+
+            throw new RepositoryExpcetion(sprintf('Lớp %s phải kế thừa từ %s', $this->model(), Model::class));
+        }
+
+        return $this->model;
+    }
+
+    protected function resetModel(): void
+    {
+        $this->model = null;
+    }
+
+    public static function __callStatic(string $method, array $arguments)
+    {
+        return call_user_func_array([new static, $method], $arguments);
+    }
+
+    public function __call(string $method, array $arguments)
+    {
+        return call_user_func_array([$this->model, $method], $arguments);
     }
 }
