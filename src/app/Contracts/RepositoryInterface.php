@@ -2,11 +2,17 @@
 
 namespace ChuPhong\Repository\Contracts;
 
+use ChuPhong\Repository\Exceptions\RepositoryExpcetion;
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
+use Illuminate\Database\Eloquent\Model;
+
 interface RepositoryInterface
 {
     /**
-     * @param string[] $columns
-     * @return mixed
+     * @param array|string[] $columns
+     * @return EloquentBuilder[]|\Illuminate\Database\Eloquent\Collection|Model[]|\Illuminate\Support\Collection|mixed
+     * @throws RepositoryExpcetion
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function all(array $columns = ['*']);
 

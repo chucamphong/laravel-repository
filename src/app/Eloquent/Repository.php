@@ -14,16 +14,22 @@ abstract class Repository implements RepositoryInterface
     protected Application $app;
 
     /**
-     * @var Model|QueryBuilder|EloquentBuilder|null
+     * @var Model|QueryBuilder|EloquentBuilder
      */
-    private $model;
+    protected $model;
 
+    /**
+     * @param Application $app
+     * @throws RepositoryExpcetion
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
     public function __construct(Application $app)
     {
         $this->app = $app;
+        $this->model = $this->getModel();
     }
 
-    abstract public function model(): string;
+    abstract protected function model(): string;
 
     /**
      * @throws RepositoryExpcetion
@@ -31,22 +37,22 @@ abstract class Repository implements RepositoryInterface
      */
     protected function getModel(): Model
     {
-        if (is_null($this->model)) {
-            $model = $this->app->make($this->model());
+        $model = $this->app->make($this->model());
 
-            if ($model instanceof Model) {
-                $this->model = $model;
-            }
-
+        if (!$model instanceof Model) {
             throw new RepositoryExpcetion(sprintf('Lớp %s phải kế thừa từ %s', $this->model(), Model::class));
         }
 
-        return $this->model;
+        return $model;
     }
 
+    /**
+     * @throws RepositoryExpcetion
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
     protected function resetModel(): void
     {
-        $this->model = null;
+        $this->model = $this->getModel();
     }
 
     public function all(array $columns = ['*'])
