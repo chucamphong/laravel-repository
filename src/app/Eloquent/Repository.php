@@ -49,6 +49,19 @@ abstract class Repository implements RepositoryInterface
         $this->model = null;
     }
 
+    public function all(array $columns = ['*'])
+    {
+        if ($this->model instanceof EloquentBuilder) {
+            $results = $this->model->get($columns);
+        } else {
+            $results = $this->model->all($columns);
+        }
+
+        $this->resetModel();
+
+        return $results;
+    }
+
     public static function __callStatic(string $method, array $arguments)
     {
         return call_user_func_array([new static, $method], $arguments);

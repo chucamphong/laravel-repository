@@ -5,6 +5,12 @@ namespace ChuPhong\Repository\Contracts;
 interface RepositoryInterface
 {
     /**
+     * @param string[] $columns
+     * @return mixed
+     */
+    public function all(array $columns = ['*']);
+
+    /**
      * @param string $method
      * @param array $arguments
      * @return mixed
