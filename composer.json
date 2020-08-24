@@ -1,15 +1,39 @@
 {
-  "name": "$vendor_name$/$package_name$",
-  "description": "$description$",
-  "minimum-stability": "$stability$",
-  "license": "$license$",
-  "authors": [
-    {
-      "name": "$author$",
-      "email": "$email$"
+    "name": "chuphong/laravel-repository",
+    "description": "Áp dụng mô hình Repository cho ứng dụng Laravel.",
+    "version": "0.0.1",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Chu Phong",
+            "email": "chucamphong1999@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "illuminate/http": "~7.0",
+        "illuminate/config": "~7.0",
+        "illuminate/support": "~7.0",
+        "illuminate/database": "~7.0",
+        "illuminate/pagination": "~7.0",
+        "illuminate/console": "~7.0",
+        "illuminate/filesystem": "~7.0",
+        "illuminate/validation": "~7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "ChuPhong\\Repository\\": "src/app/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ChuPhong\\Repository\\Providers\\RepositoryServiceProvider"
+            ]
+        }
     }
-  ],
-  "require": {
-    $END$
-  }
 }
