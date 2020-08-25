@@ -123,6 +123,13 @@ abstract class Repository implements RepositoryInterface
         return $results;
     }
 
+    public function with($relations): RepositoryInterface
+    {
+        $this->model = $this->model->with($relations);
+
+        return $this;
+    }
+
     public function withCount($relations): RepositoryInterface
     {
         $this->model = $this->model->withCount($relations);
