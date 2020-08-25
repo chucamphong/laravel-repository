@@ -7,7 +7,7 @@ use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider implements DeferrableProvider
 {
-    private const CONFIG_PATH = __DIR__ . '../../config';
+    private const CONFIG_PATH = __DIR__ . '/../../config';
 
     public function boot()
     {
