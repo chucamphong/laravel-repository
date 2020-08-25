@@ -12,7 +12,7 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->publishes(
             [
-                self::CONFIG_PATH . '/repository.php' => $this->app->configPath('repository.php')
+                self::CONFIG_PATH . '/repository.php' => $this->app->configPath('repository.php'),
             ]
         );
 
