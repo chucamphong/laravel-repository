@@ -134,6 +134,15 @@ abstract class Repository implements RepositoryInterface
         return $this;
     }
 
+    public function limit(int $limit)
+    {
+        $results = $this->model->limit($limit)->get();
+
+        $this->resetModel();
+
+        return $results;
+    }
+
     public static function __callStatic(string $method, array $arguments)
     {
         return call_user_func_array([new static, $method], $arguments);

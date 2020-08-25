@@ -55,6 +55,12 @@ interface RepositoryInterface
     public function withCount($relations): RepositoryInterface;
 
     /**
+     * @param int $limit
+     * @return mixed
+     */
+    public function limit(int $limit);
+
+    /**
      * @param string $method
      * @param array $arguments
      * @return mixed
