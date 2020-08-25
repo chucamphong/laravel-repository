@@ -3,6 +3,7 @@
 namespace ChuPhong\Repository\Eloquent;
 
 use ChuPhong\Repository\Contracts\RepositoryInterface;
+use ChuPhong\Repository\Exceptions\ModelDeleteException;
 use ChuPhong\Repository\Exceptions\RepositoryExpcetion;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
@@ -93,6 +94,21 @@ abstract class Repository implements RepositoryInterface
         $this->resetModel();
 
         return $model;
+    }
+
+    public function delete(Model $model): Model
+    {
+        if (!$model->exists) {
+            throw new ModelNotFoundException("Không tìm thấy model có id = {$model->getKey()}");
+        }
+
+        $originalModel = $model->replicate();
+
+        if (!$model->delete()) {
+            throw new ModelDeleteException("Không thể xóa model có id = {$model->getKey()}");
+        }
+
+        return $originalModel;
     }
 
     public static function __callStatic(string $method, array $arguments)

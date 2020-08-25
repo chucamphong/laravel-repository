@@ -36,6 +36,15 @@ interface RepositoryInterface
     public function update(Model $model, array $attributes): Model;
 
     /**
+     * @param Model $model
+     * @return Model
+     * @throws \ChuPhong\Repository\Exceptions\ModelDeleteException
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+     * @throws \Exception
+     */
+    public function delete(Model $model): Model;
+
+    /**
      * @param string $method
      * @param array $arguments
      * @return mixed
