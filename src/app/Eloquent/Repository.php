@@ -105,6 +105,8 @@ abstract class Repository implements RepositoryInterface
 
         $originalModel = clone $model;
 
+        $this->resetModel();
+
         if (!$model->delete()) {
             throw new ModelDeleteException("Không thể xóa model có id = {$model->getKey()}");
         }
