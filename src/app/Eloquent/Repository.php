@@ -68,6 +68,17 @@ abstract class Repository implements RepositoryInterface
         return $results;
     }
 
+    public function create(array $attributes): Model
+    {
+        $model = $this->model->newInstance($attributes);
+
+        $model->saveOrFail();
+
+        $this->resetModel();
+
+        return $model;
+    }
+
     public static function __callStatic(string $method, array $arguments)
     {
         return call_user_func_array([new static, $method], $arguments);

@@ -17,6 +17,15 @@ interface RepositoryInterface
     public function all(array $columns = ['*']);
 
     /**
+     * @param array $attributes
+     * @return Model
+     * @throws RepositoryExpcetion
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \Throwable
+     */
+    public function create(array $attributes): Model;
+
+    /**
      * @param string $method
      * @param array $arguments
      * @return mixed
