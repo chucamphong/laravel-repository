@@ -45,6 +45,15 @@ interface RepositoryInterface
     public function delete(Model $model): Model;
 
     /**
+     * @param int|null $limit
+     * @param string[] $columns
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * @throws \ChuPhong\Repository\Exceptions\RepositoryExpcetion
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    public function paginate(int $limit = null, array $columns = ['*']);
+
+    /**
      * @param string $method
      * @param array $arguments
      * @return mixed

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Query\Builder as QueryBuilder;
+use Illuminate\Support\Facades\Config;
 
 abstract class Repository implements RepositoryInterface
 {
@@ -109,6 +110,17 @@ abstract class Repository implements RepositoryInterface
         }
 
         return $originalModel;
+    }
+
+    public function paginate(int $limit = null, array $columns = ['*'])
+    {
+        $limit = $limit ?? Config::get('repository.pagination.limit');
+
+        $results = $this->model->paginate($limit, $columns);
+
+        $this->resetModel();
+
+        return $results;
     }
 
     public static function __callStatic(string $method, array $arguments)
