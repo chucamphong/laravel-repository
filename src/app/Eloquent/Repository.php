@@ -7,6 +7,7 @@ use ChuPhong\Repository\Exceptions\RepositoryExpcetion;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 
 abstract class Repository implements RepositoryInterface
@@ -71,6 +72,22 @@ abstract class Repository implements RepositoryInterface
     public function create(array $attributes): Model
     {
         $model = $this->model->newInstance($attributes);
+
+        $model->saveOrFail();
+
+        $this->resetModel();
+
+        return $model;
+    }
+
+
+    public function update(Model $model, array $attributes): Model
+    {
+        if (!$model->exists) {
+            throw new ModelNotFoundException("Không tìm thấy model có id = {$model->getKey()}");
+        }
+
+        $model->fill($attributes);
 
         $model->saveOrFail();
 

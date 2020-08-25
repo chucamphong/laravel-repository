@@ -26,6 +26,18 @@ interface RepositoryInterface
     public function create(array $attributes): Model;
 
     /**
+     * @param Model $model
+     * @param array $attributes
+     * @return Model
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+     * @throws \ChuPhong\Repository\Exceptions\RepositoryExpcetion
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \Illuminate\Database\Eloquent\MassAssignmentException
+     * @throws \Throwable
+     */
+    public function update(Model $model, array $attributes): Model;
+
+    /**
      * @param string $method
      * @param array $arguments
      * @return mixed
