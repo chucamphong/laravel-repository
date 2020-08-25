@@ -1,7 +1,7 @@
 {
     "name": "chuphong/laravel-repository",
     "description": "Áp dụng mô hình Repository cho ứng dụng Laravel.",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "minimum-stability": "stable",
     "license": "MIT",
     "authors": [
