@@ -2,10 +2,9 @@
 
 namespace ChuPhong\Repository\Providers;
 
-use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
-class RepositoryServiceProvider extends ServiceProvider implements DeferrableProvider
+class RepositoryServiceProvider extends ServiceProvider
 {
     private const CONFIG_PATH = __DIR__ . '/../../config';
 
