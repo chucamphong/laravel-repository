@@ -123,6 +123,13 @@ abstract class Repository implements RepositoryInterface
         return $results;
     }
 
+    public function withCount($relations): RepositoryInterface
+    {
+        $this->model = $this->model->withCount($relations);
+
+        return $this;
+    }
+
     public static function __callStatic(string $method, array $arguments)
     {
         return call_user_func_array([new static, $method], $arguments);

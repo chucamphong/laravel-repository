@@ -54,6 +54,12 @@ interface RepositoryInterface
     public function paginate(int $limit = null, array $columns = ['*']);
 
     /**
+     * @param mixed $relations
+     * @return RepositoryInterface
+     */
+    public function withCount($relations): RepositoryInterface;
+
+    /**
      * @param string $method
      * @param array $arguments
      * @return mixed
