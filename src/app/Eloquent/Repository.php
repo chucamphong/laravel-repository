@@ -36,7 +36,6 @@ abstract class Repository implements RepositoryInterface
 
     /**
      * @throws RepositoryExpcetion
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     protected function getModel(): Model
     {
@@ -51,7 +50,6 @@ abstract class Repository implements RepositoryInterface
 
     /**
      * @throws RepositoryExpcetion
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     protected function resetModel(): void
     {
