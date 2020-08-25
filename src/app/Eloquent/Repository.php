@@ -102,7 +102,7 @@ abstract class Repository implements RepositoryInterface
             throw new ModelNotFoundException("Không tìm thấy model có id = {$model->getKey()}");
         }
 
-        $originalModel = $model->replicate();
+        $originalModel = clone $model;
 
         if (!$model->delete()) {
             throw new ModelDeleteException("Không thể xóa model có id = {$model->getKey()}");
