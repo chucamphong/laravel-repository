@@ -80,7 +80,6 @@ abstract class Repository implements RepositoryInterface
         return $model;
     }
 
-
     public function update(Model $model, array $attributes): Model
     {
         if (!$model->exists) {
