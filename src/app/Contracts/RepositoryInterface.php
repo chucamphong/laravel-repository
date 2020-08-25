@@ -43,8 +43,7 @@ interface RepositoryInterface
     public function paginate(int $limit = null, array $columns = ['*']);
 
     /**
-     * @param    array|string    $relations
-     *
+     * @param array|string $relations
      * @return \ChuPhong\Repository\Contracts\RepositoryInterface
      */
     public function with($relations): RepositoryInterface;

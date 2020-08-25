@@ -9,7 +9,6 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Facades\Config;
 
 abstract class Repository implements RepositoryInterface
@@ -17,14 +16,12 @@ abstract class Repository implements RepositoryInterface
     protected Application $app;
 
     /**
-     * @var Model|QueryBuilder|EloquentBuilder
+     * @var Model|EloquentBuilder
      */
     protected $model;
 
     /**
      * @param Application $app
-     * @throws RepositoryExpcetion
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function __construct(Application $app)
     {
