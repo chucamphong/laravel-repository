@@ -143,6 +143,20 @@ abstract class Repository implements RepositoryInterface
         return $results;
     }
 
+    public function orderByAsc(string $column): RepositoryInterface
+    {
+        $this->model = $this->model->orderBy($column);
+
+        return $this;
+    }
+
+    public function orderByDesc(string $column): RepositoryInterface
+    {
+        $this->model = $this->model->orderByDesc($column);
+
+        return $this;
+    }
+
     public static function __callStatic(string $method, array $arguments)
     {
         return call_user_func_array([new static, $method], $arguments);

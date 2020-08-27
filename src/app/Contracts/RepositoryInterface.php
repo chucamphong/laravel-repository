@@ -61,6 +61,19 @@ interface RepositoryInterface
     public function limit(int $limit);
 
     /**
+     * @param string $column
+     * @param string $direction
+     * @return \ChuPhong\Repository\Contracts\RepositoryInterface
+     */
+    public function orderBy(string $column, string $direction = 'asc'): RepositoryInterface;
+
+    /**
+     * @param string $column
+     * @return \ChuPhong\Repository\Contracts\RepositoryInterface
+     */
+    public function orderByDesc(string $column): RepositoryInterface;
+
+    /**
      * @param string $method
      * @param array $arguments
      * @return mixed
