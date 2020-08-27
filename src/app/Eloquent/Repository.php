@@ -77,7 +77,7 @@ abstract class Repository implements RepositoryInterface
         return $model;
     }
 
-    public function update(Model $model, array $attributes): Model
+    public function update($model, array $attributes): Model
     {
         if (!$model->exists) {
             throw new ModelNotFoundException("Không tìm thấy model có id = {$model->getKey()}");
@@ -92,7 +92,7 @@ abstract class Repository implements RepositoryInterface
         return $model;
     }
 
-    public function delete(Model $model): Model
+    public function delete($model): Model
     {
         if (!$model->exists) {
             throw new ModelNotFoundException("Không tìm thấy model có id = {$model->getKey()}");

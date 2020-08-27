@@ -25,7 +25,7 @@ interface RepositoryInterface
      * @return Model
      * @throws \Throwable
      */
-    public function update(Model $model, array $attributes): Model;
+    public function update($model, array $attributes): Model;
 
     /**
      * @param Model $model
@@ -33,7 +33,7 @@ interface RepositoryInterface
      * @throws \ChuPhong\Repository\Exceptions\ModelDeleteException
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function delete(Model $model): Model;
+    public function delete($model): Model;
 
     /**
      * @param int|null $limit
