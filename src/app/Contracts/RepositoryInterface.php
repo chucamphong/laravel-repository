@@ -65,7 +65,7 @@ interface RepositoryInterface
      * @param string $direction
      * @return \ChuPhong\Repository\Contracts\RepositoryInterface
      */
-    public function orderBy(string $column, string $direction = 'asc'): RepositoryInterface;
+    public function orderByAsc(string $column, string $direction = 'asc'): RepositoryInterface;
 
     /**
      * @param string $column
