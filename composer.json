@@ -1,7 +1,7 @@
 {
     "name": "chuphong/laravel-repository",
     "description": "Áp dụng mô hình Repository cho ứng dụng Laravel.",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "minimum-stability": "stable",
     "license": "MIT",
     "authors": [
@@ -24,7 +24,10 @@
     "autoload": {
         "psr-4": {
             "ChuPhong\\Repository\\": "src/app/"
-        }
+        },
+        "files": [
+            "src/app/Support/helpers.php"
+        ]
     },
     "config": {
         "preferred-install": "dist"

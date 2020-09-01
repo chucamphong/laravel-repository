@@ -157,10 +157,10 @@ abstract class Repository implements RepositoryInterface
         return $this;
     }
 
-    public function whereLike(array $attributes, string $searchTerm): RepositoryInterface
+    public function whereLike($attributes, string $searchTerm): RepositoryInterface
     {
         $this->model = $this->model->where(function (EloquentBuilder $query) use ($attributes, $searchTerm) {
-            foreach ($attributes as $attribute) {
+            foreach (array_wrap($attributes) as $attribute) {
                 $query->when(
                     str_contains($attribute, '.'),
                     function (EloquentBuilder $query) use ($attribute, $searchTerm) {

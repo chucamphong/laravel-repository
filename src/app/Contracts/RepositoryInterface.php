@@ -73,11 +73,11 @@ interface RepositoryInterface
     public function orderByDesc(string $column): RepositoryInterface;
 
     /**
-     * @param array $attributes
+     * @param array|string $attributes
      * @param string $searchTerm
      * @return \ChuPhong\Repository\Contracts\RepositoryInterface
      */
-    public function whereLike(array $attributes, string $searchTerm): RepositoryInterface;
+    public function whereLike($attributes, string $searchTerm): RepositoryInterface;
 
     /**
      * @param string $method
