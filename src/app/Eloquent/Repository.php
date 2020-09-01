@@ -9,7 +9,9 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Str;
 
 abstract class Repository implements RepositoryInterface
 {
@@ -159,12 +161,15 @@ abstract class Repository implements RepositoryInterface
 
     public function whereLike($attributes, string $searchTerm): RepositoryInterface
     {
+        /** @var string[] $attributes */
+        $attributes = Arr::wrap($attributes);
+
         $this->model = $this->model->where(function (EloquentBuilder $query) use ($attributes, $searchTerm) {
-            foreach (array_wrap($attributes) as $attribute) {
+            foreach ($attributes as $attribute) {
                 $query->when(
-                    str_contains($attribute, '.'),
+                    Str::contains($attribute, '.'),
                     function (EloquentBuilder $query) use ($attribute, $searchTerm) {
-                        [$relationName, $relationAttribute] = explode('.', $attribute);
+                        [$relationName, $relationAttribute] = Str::of($attribute)->explode('.');
 
                         $query->orWhereHas($relationName,
                             function (EloquentBuilder $query) use ($relationAttribute, $searchTerm) {

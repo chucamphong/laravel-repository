@@ -73,7 +73,7 @@ interface RepositoryInterface
     public function orderByDesc(string $column): RepositoryInterface;
 
     /**
-     * @param array|string $attributes
+     * @param string|string[] $attributes
      * @param string $searchTerm
      * @return \ChuPhong\Repository\Contracts\RepositoryInterface
      */
