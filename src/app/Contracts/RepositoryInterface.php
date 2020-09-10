@@ -80,6 +80,18 @@ interface RepositoryInterface
     public function whereLike($attributes, string $searchTerm): RepositoryInterface;
 
     /**
+     * @param string|null $column
+     * @return \ChuPhong\Repository\Contracts\RepositoryInterface
+     */
+    public function latest(string $column = null): RepositoryInterface;
+
+    /**
+     * @param string $column
+     * @return \ChuPhong\Repository\Contracts\RepositoryInterface
+     */
+    public function oldest($column = 'created_at'): RepositoryInterface;
+
+    /**
      * @param string $method
      * @param array $arguments
      * @return mixed

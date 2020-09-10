@@ -186,6 +186,20 @@ abstract class Repository implements RepositoryInterface
         return $this;
     }
 
+    public function latest(string $column = null): RepositoryInterface
+    {
+        $this->model = $this->model->latest($$column);
+
+        return $this;
+    }
+
+    public function oldest($column = 'created_at'): RepositoryInterface
+    {
+        $this->model = $this->model->oldest($column);
+
+        return $this;
+    }
+
     public static function __callStatic(string $method, array $arguments)
     {
         return call_user_func_array([new static, $method], $arguments);
