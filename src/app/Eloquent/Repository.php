@@ -188,7 +188,7 @@ abstract class Repository implements RepositoryInterface
 
     public function latest(string $column = null): RepositoryInterface
     {
-        $this->model = $this->model->latest($$column);
+        $this->model = $this->model->latest($column);
 
         return $this;
     }
